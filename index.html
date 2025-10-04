@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enclave Security Bug Bounty Program</title>
+    <link rel="stylesheet" href="bug-bounty-style.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <h1>🛡️ Enclave Security</h1>
+                        <p>Bug Bounty Program</p>
+                    </div>
+                    <nav>
+                        <ul class="nav-tabs">
+                            <li><a href="#home" class="nav-tab active" onclick="showSection('home')">Home</a></li>
+                            <li><a href="#submit" class="nav-tab" onclick="showSection('submit')">Submit Bug</a></li>
+                            <li><a href="#rewards" class="nav-tab" onclick="showSection('rewards')">Rewards</a></li>
+                            <li><a href="#hall-of-fame" class="nav-tab" onclick="showSection('hall-of-fame')">Hall of Fame</a></li>
+                            <li><a href="#rules" class="nav-tab" onclick="showSection('rules')">Rules</a></li>
+                            <li><a href="#resources" class="nav-tab" onclick="showSection('resources')">Resources</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Home Section -->
+                <section id="home" class="section active">
+                    <div class="hero">
+                        <h2>Help Us Secure Enclave Messenger</h2>
+                        <p>Join our bug bounty program and earn rewards for finding security vulnerabilities in our encrypted messaging platform. Public submissions welcome from security researchers worldwide.</p>
+                        <div class="cta-buttons">
+                            <a href="#submit" class="btn btn--primary" onclick="showSection('submit')">
+                                <i data-feather="shield"></i>
+                                Report Vulnerability
+                            </a>
+                            <a href="#rules" class="btn btn--secondary" onclick="showSection('rules')">
+                                <i data-feather="book-open"></i>
+                                Program Rules
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-card" data-bg="bg-1">
+                            <div class="feature-icon">🔐</div>
+                            <h3>Hybrid Encryption</h3>
+                            <p>RSA-2048 + AES-256-GCM with forward secrecy. Help us secure our encryption implementation.</p>
+                        </div>
+                        <div class="feature-card" data-bg="bg-2">
+                            <div class="feature-icon">💰</div>
+                            <h3>Competitive Rewards</h3>
+                            <p>Earn up to $5,000 for critical vulnerabilities. Fair compensation for responsible disclosure.</p>
+                        </div>
+                        <div class="feature-card" data-bg="bg-3">
+                            <div class="feature-icon">🏆</div>
+                            <h3>Public Recognition</h3>
+                            <p>Get featured in our Hall of Fame and build your security research reputation publicly.</p>
+                        </div>
+                        <div class="feature-card" data-bg="bg-4">
+                            <div class="feature-icon">🚀</div>
+                            <h3>Fast Response</h3>
+                            <p>Critical issues fixed within 24 hours. Quick acknowledgment and transparent communication.</p>
+                        </div>
+                    </div>
+
+                    <!-- Security Stats -->
+                    <div class="stats-section">
+                        <h3>Program Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <h4>47</h4>
+                                <p>Vulnerabilities Fixed</p>
+                            </div>
+                            <div class="stat-card">
+                                <h4>$23,500</h4>
+                                <p>Total Rewards Paid</p>
+                            </div>
+                            <div class="stat-card">
+                                <h4>128</h4>
+                                <p>Security Researchers</p>
+                            </div>
+                            <div class="stat-card">
+                                <h4>2.3 days</h4>
+                                <p>Average Fix Time</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Submit Bug Section with Public Form -->
+                <section id="submit" class="section">
+                    <div class="hero">
+                        <h2>Submit a Vulnerability</h2>
+                        <p>Found a security issue? Report it through our public vulnerability disclosure form. All valid submissions are eligible for rewards.</p>
+                    </div>
+
+                    <div class="submit-content">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🔒 Public Bug Submission Form</h3>
+                                <p>This form is open to all security researchers. All submissions are reviewed by our security team within 48 hours.</p>
+                                
+                                <form id="vulnerability-form" class="vulnerability-form">
+                                    <div class="form-group">
+                                        <label for="researcher-name" class="form-label">Your Name/Handle *</label>
+                                        <input type="text" id="researcher-name" name="researcher-name" class="form-control" required placeholder="e.g., John Doe or @security_researcher">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="researcher-email" class="form-label">Contact Email *</label>
+                                        <input type="email" id="researcher-email" name="researcher-email" class="form-control" required placeholder="your.email@example.com">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="vulnerability-title" class="form-label">Vulnerability Title *</label>
+                                        <input type="text" id="vulnerability-title" name="vulnerability-title" class="form-control" required placeholder="e.g., SQL Injection in User Search">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="vulnerability-type" class="form-label">Vulnerability Type *</label>
+                                            <select id="vulnerability-type" name="vulnerability-type" class="form-control" required>
+                                                <option value="">Select vulnerability type...</option>
+                                                <option value="sql-injection">SQL Injection</option>
+                                                <option value="xss">Cross-Site Scripting (XSS)</option>
+                                                <option value="csrf">Cross-Site Request Forgery (CSRF)</option>
+                                                <option value="authentication">Authentication Bypass</option>
+                                                <option value="encryption">Cryptographic Vulnerability</option>
+                                                <option value="rce">Remote Code Execution</option>
+                                                <option value="lfi">Local File Inclusion</option>
+                                                <option value="directory-traversal">Directory Traversal</option>
+                                                <option value="information-disclosure">Information Disclosure</option>
+                                                <option value="privilege-escalation">Privilege Escalation</option>
+                                                <option value="network">Network Security Issue</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="severity" class="form-label">Estimated Severity *</label>
+                                            <select id="severity" name="severity" class="form-control" required>
+                                                <option value="">Select severity...</option>
+                                                <option value="low">Low</option>
+                                                <option value="medium">Medium</option>
+                                                <option value="high">High</option>
+                                                <option value="critical">Critical</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="affected-component" class="form-label">Affected Component *</label>
+                                        <select id="affected-component" name="affected-component" class="form-control" required>
+                                            <option value="">Select component...</option>
+                                            <option value="gui-app">Desktop GUI Application</option>
+                                            <option value="cli-app">Command Line Interface</option>
+                                            <option value="web-app">Web Interface</option>
+                                            <option value="encryption-module">Core Encryption Module</option>
+                                            <option value="network-protocol">Network Protocol</option>
+                                            <option value="database">Database/Storage</option>
+                                            <option value="website">Official Website</option>
+                                            <option value="documentation">Documentation Site</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="description" class="form-label">Detailed Description *</label>
+                                        <textarea id="description" name="description" class="form-control" rows="4" required placeholder="Provide a detailed description of the vulnerability, including what it affects and why it's a security issue..."></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="reproduction-steps" class="form-label">Steps to Reproduce *</label>
+                                        <textarea id="reproduction-steps" name="reproduction-steps" class="form-control" rows="6" required placeholder="1. Navigate to...&#10;2. Enter the following payload...&#10;3. Click submit...&#10;4. Observe that..."></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="impact" class="form-label">Impact Assessment *</label>
+                                        <textarea id="impact" name="impact" class="form-control" rows="3" required placeholder="Describe what an attacker could achieve with this vulnerability and the potential damage..."></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="proof-of-concept" class="form-label">Proof of Concept</label>
+                                        <textarea id="proof-of-concept" name="proof-of-concept" class="form-control" rows="4" placeholder="Include code snippets, curl commands, screenshots description, or other evidence..."></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="suggested-fix" class="form-label">Suggested Fix (Optional)</label>
+                                        <textarea id="suggested-fix" name="suggested-fix" class="form-control" rows="3" placeholder="If you have suggestions for how to fix this vulnerability..."></textarea>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="os-environment" class="form-label">Operating System</label>
+                                            <select id="os-environment" name="os-environment" class="form-control">
+                                                <option value="">Select OS...</option>
+                                                <option value="windows">Windows</option>
+                                                <option value="macos">macOS</option>
+                                                <option value="linux-ubuntu">Linux (Ubuntu)</option>
+                                                <option value="linux-debian">Linux (Debian)</option>
+                                                <option value="linux-fedora">Linux (Fedora)</option>
+                                                <option value="linux-arch">Linux (Arch)</option>
+                                                <option value="linux-other">Linux (Other)</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="app-version" class="form-label">App Version</label>
+                                            <input type="text" id="app-version" name="app-version" class="form-control" placeholder="e.g., 1.0.2">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="browser-info" class="form-label">Browser (if web-related)</label>
+                                        <input type="text" id="browser-info" name="browser-info" class="form-control" placeholder="e.g., Chrome 118.0.5993.70">
+                                    </div>
+
+                                    <div class="form-group checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="responsible-disclosure" name="responsible-disclosure" required>
+                                            <span class="checkmark"></span>
+                                            I agree to responsible disclosure and will not publicly disclose this vulnerability for 90 days *
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="testing-authorization" name="testing-authorization" required>
+                                            <span class="checkmark"></span>
+                                            I confirm that testing was performed only on my own systems or with explicit permission *
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="hall-of-fame-consent" name="hall-of-fame-consent">
+                                            <span class="checkmark"></span>
+                                            I consent to being listed in the public Hall of Fame if this vulnerability is confirmed (optional)
+                                        </label>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn--primary btn--lg">
+                                            <i data-feather="send"></i>
+                                            Submit Vulnerability Report
+                                        </button>
+                                        <button type="reset" class="btn btn--outline btn--lg">
+                                            <i data-feather="refresh-ccw"></i>
+                                            Clear Form
+                                        </button>
+                                    </div>
+
+                                    <div class="form-note">
+                                        <p><strong>Note:</strong> All submissions are automatically assigned a tracking ID and you will receive an email confirmation within 24 hours. Our security team reviews all reports within 48 hours.</p>
+                                    </div>
+                                </form>
+
+                                <div id="submission-success" class="submission-result success" style="display: none;">
+                                    <div class="result-icon">✅</div>
+                                    <h4>Submission Successful!</h4>
+                                    <p>Your vulnerability report has been submitted successfully. You will receive a confirmation email with tracking ID within 24 hours.</p>
+                                    <p><strong>Tracking ID:</strong> <span id="tracking-id"></span></p>
+                                </div>
+
+                                <div id="submission-error" class="submission-result error" style="display: none;">
+                                    <div class="result-icon">❌</div>
+                                    <h4>Submission Failed</h4>
+                                    <p>There was an error submitting your report. Please try again or email us directly at <strong>security@enclave-messenger.com</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>⚠️ Submission Guidelines</h3>
+                                <ul class="guidelines-list">
+                                    <li><strong>Public Form:</strong> This form is public and open to all security researchers worldwide</li>
+                                    <li><strong>Valid Email:</strong> Provide a valid email address for communication and reward delivery</li>
+                                    <li><strong>Detailed Reports:</strong> Include comprehensive reproduction steps and impact assessment</li>
+                                    <li><strong>One Bug Per Report:</strong> Submit separate forms for different vulnerabilities</li>
+                                    <li><strong>No Spam:</strong> Only submit legitimate security vulnerabilities</li>
+                                    <li><strong>Responsible Testing:</strong> Only test on your own systems or with permission</li>
+                                </ul>
+
+                                <div class="contact-info">
+                                    <h4>Alternative Contact</h4>
+                                    <p>If you prefer email or have issues with the form:</p>
+                                    <a href="mailto:security@enclave-messenger.com" class="contact-email">
+                                        <i data-feather="mail"></i>
+                                        security@enclave-messenger.com
+                                    </a>
+                                    <p class="contact-note">Use subject: "SECURITY VULNERABILITY - [Brief Description]"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rewards Section -->
+                <section id="rewards" class="section">
+                    <div class="hero">
+                        <h2>Reward Structure</h2>
+                        <p>Fair compensation based on vulnerability severity and potential impact. All public submissions are eligible for rewards.</p>
+                    </div>
+
+                    <div class="rewards-content">
+                        <div class="rewards-table">
+                            <div class="severity-row critical">
+                                <div class="severity-info">
+                                    <span class="severity-badge critical">Critical</span>
+                                    <h3>$2,500 - $5,000</h3>
+                                    <p>Remote code execution, authentication bypass, complete system compromise</p>
+                                </div>
+                                <div class="examples">
+                                    <h4>Examples:</h4>
+                                    <ul>
+                                        <li>Encryption key extraction</li>
+                                        <li>Authentication bypass</li>
+                                        <li>Remote code execution</li>
+                                        <li>Complete privacy breach</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="severity-row high">
+                                <div class="severity-info">
+                                    <span class="severity-badge high">High</span>
+                                    <h3>$500 - $2,000</h3>
+                                    <p>Significant security impact, partial system compromise, cryptographic flaws</p>
+                                </div>
+                                <div class="examples">
+                                    <h4>Examples:</h4>
+                                    <ul>
+                                        <li>Message decryption flaws</li>
+                                        <li>Key exchange vulnerabilities</li>
+                                        <li>Privilege escalation</li>
+                                        <li>SQL injection</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="severity-row medium">
+                                <div class="severity-info">
+                                    <span class="severity-badge medium">Medium</span>
+                                    <h3>$200 - $500</h3>
+                                    <p>Moderate security impact, information disclosure, limited compromise</p>
+                                </div>
+                                <div class="examples">
+                                    <h4>Examples:</h4>
+                                    <ul>
+                                        <li>Cross-site scripting (XSS)</li>
+                                        <li>Information disclosure</li>
+                                        <li>CSRF vulnerabilities</li>
+                                        <li>Metadata leakage</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="severity-row low">
+                                <div class="severity-info">
+                                    <span class="severity-badge low">Low</span>
+                                    <h3>$50 - $200</h3>
+                                    <p>Minor security issues, configuration problems, low-impact vulnerabilities</p>
+                                </div>
+                                <div class="examples">
+                                    <h4>Examples:</h4>
+                                    <ul>
+                                        <li>Security misconfigurations</li>
+                                        <li>Missing security headers</li>
+                                        <li>Minor information leaks</li>
+                                        <li>Rate limiting bypass</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>💎 Bonus Rewards</h3>
+                                <ul>
+                                    <li><strong>+50%</strong> for vulnerabilities with working exploit code</li>
+                                    <li><strong>+25%</strong> for detailed remediation suggestions</li>
+                                    <li><strong>+$100</strong> for first-time contributors</li>
+                                    <li><strong>Custom swag</strong> for all valid submissions</li>
+                                    <li><strong>Public recognition</strong> in Hall of Fame (with consent)</li>
+                                </ul>
+
+                                <h3>💰 Payment Methods</h3>
+                                <div class="payment-methods">
+                                    <span class="payment-tag">PayPal</span>
+                                    <span class="payment-tag">Bank Transfer</span>
+                                    <span class="payment-tag">Cryptocurrency</span>
+                                    <span class="payment-tag">Gift Cards</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Hall of Fame Section -->
+                <section id="hall-of-fame" class="section">
+                    <div class="hero">
+                        <h2>Public Hall of Fame</h2>
+                        <p>Recognizing security researchers who help make Enclave Messenger more secure through our public bug bounty program.</p>
+                    </div>
+
+                    <div class="hall-of-fame-content">
+                        <div class="top-researchers">
+                            <h3>🏆 Top Security Researchers</h3>
+                            <div class="researchers-grid">
+                                <div class="researcher-card gold">
+                                    <div class="researcher-rank">1st</div>
+                                    <div class="researcher-info">
+                                        <h4>@AliceSecResearch</h4>
+                                        <p>Cryptography Expert</p>
+                                        <div class="researcher-stats">
+                                            <span>12 bugs found</span>
+                                            <span>$8,500 earned</span>
+                                        </div>
+                                    </div>
+                                    <div class="researcher-badge">🥇</div>
+                                </div>
+
+                                <div class="researcher-card silver">
+                                    <div class="researcher-rank">2nd</div>
+                                    <div class="researcher-info">
+                                        <h4>@BobHacker42</h4>
+                                        <p>Web Security Specialist</p>
+                                        <div class="researcher-stats">
+                                            <span>8 bugs found</span>
+                                            <span>$4,200 earned</span>
+                                        </div>
+                                    </div>
+                                    <div class="researcher-badge">🥈</div>
+                                </div>
+
+                                <div class="researcher-card bronze">
+                                    <div class="researcher-rank">3rd</div>
+                                    <div class="researcher-info">
+                                        <h4>@CarolCyber</h4>
+                                        <p>Network Security Expert</p>
+                                        <div class="researcher-stats">
+                                            <span>6 bugs found</span>
+                                            <span>$3,100 earned</span>
+                                        </div>
+                                    </div>
+                                    <div class="researcher-badge">🥉</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="recent-findings">
+                            <h3>📋 Recent Public Submissions</h3>
+                            <div class="findings-table">
+                                <div class="finding-row">
+                                    <div class="finding-info">
+                                        <span class="severity-badge high">High</span>
+                                        <span class="finding-title">Key Exchange Race Condition</span>
+                                    </div>
+                                    <div class="finding-details">
+                                        <span class="researcher">@AliceSecResearch</span>
+                                        <span class="reward">$1,500</span>
+                                        <span class="date">Oct 2, 2025</span>
+                                    </div>
+                                </div>
+
+                                <div class="finding-row">
+                                    <div class="finding-info">
+                                        <span class="severity-badge medium">Medium</span>
+                                        <span class="finding-title">Web Interface XSS</span>
+                                    </div>
+                                    <div class="finding-details">
+                                        <span class="researcher">@BobHacker42</span>
+                                        <span class="reward">$350</span>
+                                        <span class="date">Sep 28, 2025</span>
+                                    </div>
+                                </div>
+
+                                <div class="finding-row">
+                                    <div class="finding-info">
+                                        <span class="severity-badge critical">Critical</span>
+                                        <span class="finding-title">Encryption Key Leak</span>
+                                    </div>
+                                    <div class="finding-details">
+                                        <span class="researcher">@CarolCyber</span>
+                                        <span class="reward">$3,000</span>
+                                        <span class="date">Sep 25, 2025</span>
+                                    </div>
+                                </div>
+
+                                <div class="finding-row">
+                                    <div class="finding-info">
+                                        <span class="severity-badge low">Low</span>
+                                        <span class="finding-title">Missing Rate Limiting</span>
+                                    </div>
+                                    <div class="finding-details">
+                                        <span class="researcher">@DaveDisclosure</span>
+                                        <span class="reward">$75</span>
+                                        <span class="date">Sep 22, 2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="public-leaderboard">
+                            <h3>📊 Public Leaderboard (2025)</h3>
+                            <div class="leaderboard-table">
+                                <div class="leaderboard-header">
+                                    <span>Rank</span>
+                                    <span>Researcher</span>
+                                    <span>Bugs Found</span>
+                                    <span>Total Reward</span>
+                                </div>
+                                <div class="leaderboard-row">
+                                    <span class="rank">1</span>
+                                    <span class="researcher">@AliceSecResearch</span>
+                                    <span class="bugs">12</span>
+                                    <span class="reward">$8,500</span>
+                                </div>
+                                <div class="leaderboard-row">
+                                    <span class="rank">2</span>
+                                    <span class="researcher">@BobHacker42</span>
+                                    <span class="bugs">8</span>
+                                    <span class="reward">$4,200</span>
+                                </div>
+                                <div class="leaderboard-row">
+                                    <span class="rank">3</span>
+                                    <span class="researcher">@CarolCyber</span>
+                                    <span class="bugs">6</span>
+                                    <span class="reward">$3,100</span>
+                                </div>
+                                <div class="leaderboard-row">
+                                    <span class="rank">4</span>
+                                    <span class="researcher">@DaveDisclosure</span>
+                                    <span class="bugs">4</span>
+                                    <span class="reward">$1,250</span>
+                                </div>
+                                <div class="leaderboard-row">
+                                    <span class="rank">5</span>
+                                    <span class="researcher">@EvePenTester</span>
+                                    <span class="bugs">3</span>
+                                    <span class="reward">$950</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rules Section -->
+                <section id="rules" class="section">
+                    <div class="hero">
+                        <h2>Program Rules & Public Policy</h2>
+                        <p>Clear guidelines for public vulnerability disclosure and bug bounty participation.</p>
+                    </div>
+
+                    <div class="rules-content">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>✅ In Scope</h3>
+                                <div class="scope-list">
+                                    <h4>🔐 Enclave Messenger Applications</h4>
+                                    <ul>
+                                        <li>Desktop GUI application (Python/Tkinter)</li>
+                                        <li>Command-line interface (CLI)</li>
+                                        <li>Web interface (Flask application)</li>
+                                        <li>Core encryption module (secure_messenger.py)</li>
+                                    </ul>
+
+                                    <h4>🌐 Web Properties</h4>
+                                    <ul>
+                                        <li>Official website: enclave-messenger.com</li>
+                                        <li>Documentation site: docs.enclave-messenger.com</li>
+                                        <li>Bug bounty portal (this site)</li>
+                                        <li>GitHub repositories: github.com/Enclave-Software/*</li>
+                                    </ul>
+
+                                    <h4>🔧 Infrastructure</h4>
+                                    <ul>
+                                        <li>Network protocols and implementations</li>
+                                        <li>Key exchange mechanisms</li>
+                                        <li>Database security (SQLite)</li>
+                                        <li>File system operations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>❌ Out of Scope</h3>
+                                <ul class="out-of-scope">
+                                    <li>Social engineering attacks against employees or users</li>
+                                    <li>Physical security issues requiring device access</li>
+                                    <li>Denial of Service (DoS) attacks</li>
+                                    <li>Third-party services and dependencies</li>
+                                    <li>Issues requiring significant social engineering</li>
+                                    <li>Theoretical vulnerabilities without practical impact</li>
+                                    <li>Spam or content injection without security implications</li>
+                                    <li>Rate limiting on non-security critical endpoints</li>
+                                    <li>Missing HTTP headers without demonstrated security impact</li>
+                                    <li>Issues already known or reported by other researchers</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>📋 Public Disclosure Policy</h3>
+                                <div class="policy-steps">
+                                    <div class="policy-item">
+                                        <h4>1. Submit Through Official Channels</h4>
+                                        <p>Use our public form above or email <strong>security@enclave-messenger.com</strong></p>
+                                    </div>
+                                    <div class="policy-item">
+                                        <h4>2. No Public Disclosure (Initially)</h4>
+                                        <p><strong>DO NOT</strong> create public GitHub issues, blog posts, or social media posts about the vulnerability before we've had time to fix it</p>
+                                    </div>
+                                    <div class="policy-item">
+                                        <h4>3. Acknowledgment Timeline</h4>
+                                        <p>We acknowledge all public submissions within <strong>48 hours</strong> with a tracking ID</p>
+                                    </div>
+                                    <div class="policy-item">
+                                        <h4>4. Fix & Reward Timeline</h4>
+                                        <ul>
+                                            <li><strong>Critical:</strong> Fixed within 24 hours, reward within 7 days</li>
+                                            <li><strong>High:</strong> Fixed within 1 week, reward within 14 days</li>
+                                            <li><strong>Medium:</strong> Fixed in next release, reward within 30 days</li>
+                                            <li><strong>Low:</strong> Fixed when possible, reward within 45 days</li>
+                                        </ul>
+                                    </div>
+                                    <div class="policy-item">
+                                        <h4>5. Public Recognition</h4>
+                                        <p>With your consent, you'll be added to our public Hall of Fame after the fix is deployed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>⚖️ Legal Safe Harbor</h3>
+                                <p>We provide legal safe harbor for security researchers who:</p>
+                                <ul>
+                                    <li>Submit vulnerabilities through our official public channels</li>
+                                    <li>Only test against their own systems or with explicit permission</li>
+                                    <li>Do not access, modify, or delete data belonging to others</li>
+                                    <li>Do not perform testing that harms system availability</li>
+                                    <li>Follow responsible disclosure practices</li>
+                                    <li>Act in good faith to improve security</li>
+                                </ul>
+                                <p><strong>We will not pursue legal action against researchers who follow these guidelines.</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Resources Section -->
+                <section id="resources" class="section">
+                    <div class="hero">
+                        <h2>Public Security Research Resources</h2>
+                        <p>Open resources, documentation, and tools available to all security researchers.</p>
+                    </div>
+
+                    <div class="resources-content">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>📚 Public Documentation</h3>
+                                <div class="resource-links">
+                                    <a href="https://github.com/Enclave-Software/Enclave-Messenger" class="resource-link">
+                                        <i data-feather="github"></i>
+                                        <div>
+                                            <h4>Source Code Repository</h4>
+                                            <p>Complete open-source code available for analysis and testing</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="resource-link">
+                                        <i data-feather="book"></i>
+                                        <div>
+                                            <h4>Security Architecture Guide</h4>
+                                            <p>Public documentation of our encryption and security implementation</p>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="resource-link">
+                                        <i data-feather="code"></i>
+                                        <div>
+                                            <h4>API Documentation</h4>
+                                            <p>Complete API reference for all public interfaces</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🔧 Testing Environment Setup</h3>
+                                <div class="testing-info">
+                                    <h4>Public Repository Setup</h4>
+                                    <pre><code># Clone the public repository
+git clone https://github.com/Enclave-Software/Enclave-Messenger.git
+cd Enclave-Messenger
+
+# Install dependencies
+python3 setup.py
+
+# Run different interfaces
+python3 enclave_messenger_gui.py    # GUI version
+python3 enclave_messenger_cli.py    # CLI version  
+python3 enclave_messenger_web.py    # Web version</code></pre>
+
+                                    <h4>Testing Guidelines</h4>
+                                    <ul>
+                                        <li>Test only on your own local installations</li>
+                                        <li>Use isolated test environments</li>
+                                        <li>Default port: 12345 (configurable)</li>
+                                        <li>All testing should be done offline or in controlled networks</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>📝 Public Reporting Best Practices</h3>
+                                <div class="best-practices">
+                                    <div class="practice">
+                                        <h4>Clear Title</h4>
+                                        <p>Use descriptive titles like "SQL Injection in User Search" rather than "Security Bug"</p>
+                                    </div>
+                                    <div class="practice">
+                                        <h4>Detailed Steps</h4>
+                                        <p>Provide step-by-step reproduction instructions that our team can follow exactly</p>
+                                    </div>
+                                    <div class="practice">
+                                        <h4>Impact Assessment</h4>
+                                        <p>Explain what an attacker could achieve and the potential business/user impact</p>
+                                    </div>
+                                    <div class="practice">
+                                        <h4>Proof of Concept</h4>
+                                        <p>Include screenshots, code snippets, or demo videos when possible</p>
+                                    </div>
+                                    <div class="practice">
+                                        <h4>Environment Details</h4>
+                                        <p>Specify OS, application version, and other relevant environmental factors</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-support">
+                                    <h4>Public Support</h4>
+                                    <p>Questions about our public bug bounty program? Contact us:</p>
+                                    <a href="mailto:security@enclave-messenger.com" class="btn btn--secondary btn--sm">
+                                        <i data-feather="help-circle"></i>
+                                        Get Help with Submission
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>🛡️ Enclave Security</h4>
+                        <p>Public Bug Bounty Program</p>
+                        <p>Open to all security researchers worldwide</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Program</h4>
+                        <ul>
+                            <li><a href="#submit">Public Submission Form</a></li>
+                            <li><a href="#rewards">Reward Structure</a></li>
+                            <li><a href="#hall-of-fame">Public Hall of Fame</a></li>
+                            <li><a href="#rules">Program Rules</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="https://github.com/Enclave-Software">Public GitHub</a></li>
+                            <li><a href="#resources">Security Resources</a></li>
+                            <li><a href="mailto:security@enclave-messenger.com">Security Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Recognition</h4>
+                        <blockquote>
+                            "Security is a process, not a product."
+                            <cite>- Bruce Schneier</cite>
+                        </blockquote>
+                        <p>Thank you to all public contributors who help keep Enclave secure.</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Enclave Software. Public Bug Bounty Program. All security researchers welcome. Report vulnerabilities to security@enclave-messenger.com</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Form submission handling
+        document.getElementById('vulnerability-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission (in real implementation, this would send to your backend)
+            const formData = new FormData(this);
+            const trackingId = 'VUL-' + Date.now().toString(36).toUpperCase();
+            
+            // Hide form and show success message
+            this.style.display = 'none';
+            document.getElementById('submission-success').style.display = 'block';
+            document.getElementById('tracking-id').textContent = trackingId;
+            
+            // In real implementation, you would:
+            // 1. Send data to your backend API
+            // 2. Store in database
+            // 3. Send email notifications
+            // 4. Generate tracking ID
+            // 5. Send confirmation email
+            
+            console.log('Form submitted with data:', Object.fromEntries(formData));
+        });
+
+        // Initialize feather icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+    </script>
+</body>
+</html>
